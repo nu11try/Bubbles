@@ -18,8 +18,5 @@ public class BubTap : MonoBehaviour
     }
 
     void Update () {
-        if (CountUp.dest) {
-            Destroy(gameObject);
-        }
     }
 }

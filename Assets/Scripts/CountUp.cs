@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CountUp : MonoBehaviour
 {
@@ -28,23 +29,30 @@ public class CountUp : MonoBehaviour
     public GameObject[] mainGameElement;
     //---------------------
 
+    Coroutine _spawnEl;
+
     void Awake()
     {
         dest = false;
     }
     void Start()
     {
-        StartCoroutine(Spawn());
+        _spawnEl = StartCoroutine(Spawn());
         count = 0;        
     }
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("main");
+        }
         if (BubTap.up)
         {
             UpScore();
         }
         if (Player.lose)
         {
+            StopCoroutine(_spawnEl);
             bubs = GameObject.FindGameObjectsWithTag(bubTag);
             foreach (GameObject bub in bubs)
             {
@@ -52,7 +60,6 @@ public class CountUp : MonoBehaviour
             }
         }
     }
-
     IEnumerator Spawn()
     {
         float min = 0.5f;
@@ -112,17 +119,10 @@ public class CountUp : MonoBehaviour
         {
             PlayerPrefs.SetInt("ScoreGame1", count);
         }
-        if (count == 30)
+        if (count >= PlayerPrefs.GetInt(SceneManager.GetActiveScene().name))
         {
             Next.SetActive(true);
-            Back.SetActive(true);                       
             dest = true;
         }
     }
-
-    // void playerLose () {
-    //     if (PlayerPrefs.GetInt ("ScoreGame1") < count) {
-    //         PlayerPrefs.SetInt ("ScoreGame1", count);
-    //     }
-    // }
 }

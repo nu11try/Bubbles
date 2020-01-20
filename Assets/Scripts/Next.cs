@@ -8,6 +8,7 @@ public class Next : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log(gameObject.name);
+        Physics.queriesHitTriggers = true;
         switch (gameObject.name)
         {            
             case "Next":

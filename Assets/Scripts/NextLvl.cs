@@ -19,7 +19,9 @@ public class NextLvl : MonoBehaviour
         switch (gameObject.name)
         {
             case "NextLvl2":
-                if (PlayerPrefs.GetInt("ScoreGame1") >= PlayerPrefs.GetInt("lvl2"))
+                next = true;
+                Score1.SetActive(false);
+                /*if (PlayerPrefs.GetInt("ScoreGame1") >= PlayerPrefs.GetInt("lvl2"))
                 {
                     next = true;
                     Score1.SetActive(false);
@@ -27,7 +29,7 @@ public class NextLvl : MonoBehaviour
                 else
                 {
                     Debug.Log("Не набранно нужное количество очков");
-                }
+                }*/
                 break;
 
             case "NextLvl1":
@@ -36,6 +38,9 @@ public class NextLvl : MonoBehaviour
                 break;
 
             case "NextLvl3":
+                next3 = true;
+                Score2.SetActive(false);
+                /*
                 if (PlayerPrefs.GetInt("ScoreGame2") >= PlayerPrefs.GetInt("lvl3"))
                 {
                     next3 = true;
@@ -44,7 +49,7 @@ public class NextLvl : MonoBehaviour
                 else
                 {
                     Debug.Log("Не набранно нужное количество очков");
-                }
+                }*/
                 break;
             case "NextLvl4":
                 next4 = true;                
